@@ -5,20 +5,34 @@ on:
     branches: [ "main" ]
 
 jobs:
-  job1:
+  deploy:
 
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: customize step1
-      run: pwd
+  runs-on: ubuntu-latest
 
-  job2:
+  steps:
 
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: customize step1
-      run: ls -a
+    - name: Checkout
+
+      uses: actions/checkout@v2
+
+    - name: Deployment
+
+      uses: appleboy/ssh-action@main
+
+      with:
+
+        host: ${{ secrets.SSH_HOST }}
+
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+        username: ${{ secrets.SSH_USERNAME }}
+
+        script: |
+
+          cd /var/www/html/
+
+          git checkout -f 
+
+          git pull
     
     
