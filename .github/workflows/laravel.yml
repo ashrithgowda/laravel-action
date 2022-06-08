@@ -19,11 +19,11 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
 
         username: ${{ secrets.SSH_USERNAME }}
-      run: 
+      run: |
 
-         - cd /var/www/html/
-         - git checkout -f 
-         - git pull
+          cd /var/www/html/
+          git checkout -f 
+          git pull
 
   # deploy:
 
