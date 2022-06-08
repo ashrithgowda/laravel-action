@@ -3,66 +3,20 @@ name: Laravel
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  deploy:
+  job1:
 
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
+    - uses: actions/checkout@v3
+    - name: customize step1
+      run: 
+      - pwd
+      - ls -a
 
-    - name: Checkout
-
-      uses: actions/checkout@v2
-
-    - name: Deployment
-
-      uses: appleboy/ssh-action@main
-
-      with:
-
-        host: ${{ secrets.SSH_HOST }}
-
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-        username: ${{ secrets.SSH_USERNAME }}
-
-        script: |
-
-          cd /var/www/html/
-
-          git checkout -f 
-
-          git pull
-
-  # deploy:
-
-  # runs-on: ubuntu-latest
-
-  # steps:
-
-  #   - name: Checkout
-
-  #     uses: actions/checkout@v2
-
-  #   - name: Deployment
-
-  #     uses: appleboy/ssh-action@main
-
-  #     with:
-
-  #       host: ${{ secrets.SSH_HOST }}
-
-  #       key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-  #       username: ${{ secrets.SSH_USERNAME }}
-
-  #       script: |
-
-  #         cd /var/www/html/
-
-  #         git checkout -f 
-
-  #         git pull
     
     
